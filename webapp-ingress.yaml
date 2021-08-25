@@ -10,7 +10,7 @@ spec:
       - backend:
           serviceName: web-app1
           servicePort: 80
-  - host: web-app1.andriy.com
+  - host: web-app2.andriy.com
     http:
       paths:
       - backend:
