@@ -35,7 +35,7 @@ spec:
                 
 3. Add  <your_IP> to "externalIPs" section in LoadBalancer:          
    
-   kubectl patch svc <svc-name> -n <namespace> -p '{"spec": {"type": "LoadBalancer", "externalIPs":["172.31.71.218"]}}'
+   kubectl patch svc <svc-name> -n <namespace> -p '{"spec": {"type": "LoadBalancer", "externalIPs":["192.168.1.50"]}}'
 
 4. Add to /etc/hosts :
 
