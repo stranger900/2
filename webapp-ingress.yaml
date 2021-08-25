@@ -2,17 +2,27 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: webapp-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - host: web-app1.andriy.com
     http:
       paths:
-      - backend:
-          serviceName: web-app1-service
-          servicePort: 80
+        - path: /*
+          pathType: Prefix
+          backend:
+            service:
+              name: web-app1-service
+              port:
+                number: 80
   - host: web-app2.andriy.com
     http:
       paths:
-      - backend:
-          serviceName: web-app2-service
-          servicePort: 80
+        - path: /*
+          pathType: Prefix
+          backend:
+            service:
+              name: web-app2-service
+              port:
+                number: 80
