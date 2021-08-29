@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
-#  labels:
-#    app: wordpress
+  name: mysql-server
+  labels:
+    app: mysql
 spec:
   replicas: 1
   selector:
-#    matchLabels:
-#      app: wordpress
-#      tier: mysql
+    matchLabels:
+      app: mysql
+      tier: database
   template:
     metadata:
       labels:
-#        app: wordpress
-#        tier: mysql
+        app: mysql
+        tier: database
     spec:
       volumes:
         - name: mysql-storage
@@ -28,7 +28,7 @@ spec:
               name: mysql
           volumeMounts:
             - name: mysql-storage
-              mountPath: /varl/lib/mysql
+              mountPath: /var/lib/mysql
           env:
           - name: MYSQL_ROOT_PASSWORD
             valueFrom:
