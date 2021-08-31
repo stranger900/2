@@ -1,6 +1,6 @@
-create database books-shop;
+create database books_shop;
 
-use books-shop;
+use books_shop;
 
 CREATE TABLE books( 
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
