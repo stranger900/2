@@ -15,10 +15,6 @@ spec:
           value: password
         command: ["/bin/sh","-c"]
         args: ["mysqldump -h 10.233.105.79 -u root -p${MYSQL_ROOT_PASSWORD} test > /var/lib/mysql/test.sql"]
-#        command: 
-#          - "bin/bash"
-#          - "hostname"
-#          - "mysql --version"
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
