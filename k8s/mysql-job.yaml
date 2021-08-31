@@ -1,15 +1,15 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: consumer
+  name: mysql-dump
 spec:
   template:
     metadata:
-      name: consumer
+      name: mysql-dump
     spec:
       containers:
       - name: mysql
-        image: mysql:5.6
+        image: mysql:5.7
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: password
