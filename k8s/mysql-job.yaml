@@ -1,22 +1,29 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: mysql-job
+  name: consumer
 spec:
   template:
     metadata:
-      name: mysql-job
+      name: consumer
     spec:
       containers:
       - name: mysql
-        image: mysql:5.7
+        image: mysql:5.6
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: password
         command: ["/bin/sh","-c"]
-        args: ["mysqldump -h 10.233.105.79 -u root -p${MYSQL_ROOT_PASSWORD} test > /opt/backup.sql"]
+        args: ["mysqldump -h 10.233.105.79 -u root -p${MYSQL_ROOT_PASSWORD} test > /var/lib/mysql/test.sql"]
 #        command: 
 #          - "bin/bash"
 #          - "hostname"
 #          - "mysql --version"
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
       restartPolicy: OnFailure
