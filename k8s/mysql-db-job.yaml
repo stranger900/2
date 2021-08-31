@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mysql-db
+spec:
+  template:
+    metadata:
+      name: mysql-db
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.6
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        command: ["/bin/sh","-c"]
+        args: ["mysql -h mysql -u root -p${MYSQL_ROOT_PASSWORD} <  /var/lib/mysql/create-db-books.sql"]
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+      restartPolicy: OnFailure
+
