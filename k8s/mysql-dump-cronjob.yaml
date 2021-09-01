@@ -10,7 +10,7 @@ spec:
         spec:
           containers:  
           - name: mysql
-            image: mysql:5.7
+            image: andriy900/mysql-andriy:latest
             env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
