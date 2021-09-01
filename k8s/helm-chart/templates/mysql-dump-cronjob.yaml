@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: mysql-dump
+  name: {{ .Release.Name }}-dump
 spec:
   schedule: "0 1 * * *"
   jobTemplate:
@@ -9,16 +9,16 @@ spec:
       template:
         spec:
           containers:  
-          - name: mysql
+          - name: {{ .Release.Name }}
             image: andriy900/mysql-andriy:latest
             env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secrets
+                  name: {{ .Release.Name }}-secrets
                   key: ROOT_PASSWORD
             command: ["/bin/sh","-c"]
-            args: ["mysqldump -h mysql -u root -p${MYSQL_ROOT_PASSWORD} test > /var/lib/mysql/test.sql"]
+            args: ["mysqldump -h {{ .Release.Name }} -u root -p${MYSQL_ROOT_PASSWORD} test > /var/lib/mysql/test.sql"]
             volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
