@@ -15,7 +15,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: {{ .Release.Name }}
   replicas: {{ .Values.replicaCount }}
   strategy:
     type: Recreate
