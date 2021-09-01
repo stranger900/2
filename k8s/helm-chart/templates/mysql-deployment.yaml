@@ -32,7 +32,7 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secrets
+              name: {{ .Release.Name }}-secrets
               key: ROOT_PASSWORD
         ports:
         - containerPort: 3306
