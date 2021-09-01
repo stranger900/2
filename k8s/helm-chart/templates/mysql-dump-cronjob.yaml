@@ -12,13 +12,15 @@ spec:
           - name: {{ .Release.Name }}
             image: {{ .Values.container.image }}
             env:
+            - name: CONTAINER_NAME
+              value: {{ .Release.Name }}
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-secrets
                   key: ROOT_PASSWORD
             command: ["/bin/sh","-c"]
-            args: ["mysqldump -h {{ .Release.Name }} -u root -p${MYSQL_ROOT_PASSWORD} test > /var/lib/mysql/test.sql"]
+            args: ["mysqldump --host=${CONTAINER_NAME} -u root -p${MYSQL_ROOT_PASSWORD} test > /var/lib/mysql/test.sql"]
             volumeMounts:
             - name: {{ .Release.Name }}-persistent-storage
               mountPath: /var/lib/mysql
