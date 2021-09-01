@@ -1,0 +1,4 @@
+container:
+  image: andriy900/mysql-andriy:latest
+
+replicaCount: 1
