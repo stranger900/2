@@ -10,7 +10,7 @@ spec:
         spec:
           containers:  
           - name: {{ .Release.Name }}
-            image: andriy900/mysql-andriy:latest
+            image: {{ .Values.container.image }}
             env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
