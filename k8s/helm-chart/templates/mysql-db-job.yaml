@@ -1,23 +1,23 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: mysql-db
+  name: {{ .Release.Name }}-db
 spec:
   template:
     metadata:
-      name: mysql-db
+      name: {{ .Release.Name }}-db
     spec:
       containers:
-      - name: mysql
-        image: andriy900/mysql-andriy:latest
+      - name: {{ .Release.Name }}
+        image: {{ .Values.container.image }}
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secrets
+              name: {{ .Release.Name }}-secrets
               key: ROOT_PASSWORD
         command: ["/bin/sh","-c"]
-        args: ["mysql -h mysql -u root -p${MYSQL_ROOT_PASSWORD} <  /var/lib/mysql/create-db-books.sql"]
+        args: ["mysql -h {{ .Release.Name }} -u root -p${MYSQL_ROOT_PASSWORD} <  /var/lib/mysql/create-db-books.sql"]
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
