@@ -11,13 +11,15 @@ spec:
       - name: mysql
         image: andriy900/mysql-andriy:latest
         env:
+        - name: CONTAINER_NAME
+          value: {{ .Release.Name }}
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secrets
               key: ROOT_PASSWORD
         command: ["/bin/sh","-c"]
-        args: ["mysql -h mysql -u root -p${MYSQL_ROOT_PASSWORD} <  /var/lib/mysql/create-db-books.sql"]
+        args: ["mysql --host=${CONTAINER_NAME} mysql -u root -p${MYSQL_ROOT_PASSWORD} <  /var/lib/mysql/create-db-books.sql"]
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
