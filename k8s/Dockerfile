@@ -1,3 +1,6 @@
 FROM mysql:5.7
 RUN apt update && apt upgrade -y
-COPY create_db_books.sql /var/lib/mysql
+RUN mkdir /opt/database
+RUN mkdir /opt/database/create
+RUN mkdir /opt/database/dump
+COPY create_db_books.sql /opt/database/create
