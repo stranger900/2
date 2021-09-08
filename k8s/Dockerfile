@@ -3,4 +3,4 @@ RUN apt update && apt upgrade -y
 RUN mkdir /opt/database
 RUN mkdir /opt/database/create
 RUN mkdir /opt/database/dump
-COPY create_db_books.sql /opt/database/create
+COPY create-db-books.sql /opt/database/create
