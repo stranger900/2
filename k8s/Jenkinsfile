@@ -8,7 +8,7 @@ pipeline{
     stages {
         stage('Git init'){
             steps{
-                git 'https://github.com/stranger900/1.git'
+                git 'https://github.com/stranger900/2.git'
             }
         }
         stage('Get pods'){
@@ -19,7 +19,7 @@ pipeline{
         stage('Helm install web-app'){
             steps{
                 sh """
-                helm install web-app1  helm-chart/ --values helm-chart/values.yaml --namespace test --create-namespace --wait
+                helm install web-app  k8s/helm-chart/ --values k8s/helm-chart/values.yaml --namespace test --create-namespace --wait
                 
                 """                
             }
