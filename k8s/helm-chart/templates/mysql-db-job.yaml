@@ -7,6 +7,15 @@ spec:
     metadata:
       name: {{ .Release.Name }}-db
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - {{ .Values.nodeNumber }}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.container.image }}
