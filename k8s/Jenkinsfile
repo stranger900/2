@@ -1,1 +1,36 @@
+pipeline{
+    agent any
+    environment{
+        KUBECONFIG="/opt/config"        
+        BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
 
+    }    
+    stages {
+        stage('Git init'){
+            steps{
+                git 'https://github.com/stranger900/1.git'
+            }
+        }
+        stage('Get pods'){
+            steps{
+                sh 'kubectl get nodes'
+            }
+        }          
+        stage('Helm install web-app'){
+            steps{
+                sh """
+                helm install web-app1  helm-chart/ --values helm-chart/values.yaml --namespace test --create-namespace --wait
+                
+                """                
+            }
+        }
+//        stage("Create LoadBalancer"){
+//            steps {
+//                script {
+//                sh 'kubectl expose deployment web-app --type=LoadBalancer --name=my-service'
+//                }
+//            }
+//        }
+        
+    }
+}
