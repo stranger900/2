@@ -3,11 +3,20 @@ kind: CronJob
 metadata:
   name: mysql-dump
 spec:
-  schedule: "35 21 * * *"
+  schedule: "*/1 * * * *"
   jobTemplate:
     spec:
       template:
         spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                    - node3
           containers:  
           - name: mysql
             image: andriy900/mysql-andriy:latest
