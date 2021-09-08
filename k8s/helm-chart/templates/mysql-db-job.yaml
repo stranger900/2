@@ -28,7 +28,7 @@ spec:
               name: {{ .Release.Name }}-secrets
               key: ROOT_PASSWORD
         command: ["/bin/sh","-c"]
-        args: ["mysql --host=${CONTAINER_NAME} -u root -p${MYSQL_ROOT_PASSWORD} <  /var/lib/mysql/create-db-books.sql"]
+        args: ["mysql --host=${CONTAINER_NAME} -u root -p${MYSQL_ROOT_PASSWORD} <  /opt/database/create/create-db-books.sql"]
         volumeMounts:
         - name: {{ .Release.Name }}-persistent-storage
           mountPath: /var/lib/mysql
