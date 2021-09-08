@@ -24,6 +24,15 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - node3
       containers:
       - image: {{ .Values.container.image }}
         name: {{ .Release.Name }}
