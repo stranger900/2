@@ -7,6 +7,15 @@ spec:
     metadata:
       name: mysql-db
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - node3
       containers:
       - name: mysql
         image: andriy900/mysql-andriy:latest
