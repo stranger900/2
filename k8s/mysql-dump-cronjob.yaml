@@ -27,7 +27,7 @@ spec:
                   name: mysql-secrets
                   key: ROOT_PASSWORD
             command: ["/bin/sh","-c"]
-            args: ["mysqldump -h mysql -u root -p${MYSQL_ROOT_PASSWORD} test > /var/lib/mysql/test.sql"]
+            args: ["mysqldump -h mysql -u root -p${MYSQL_ROOT_PASSWORD} books_shop > /var/lib/mysql/books_shop.sql"]
             volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
