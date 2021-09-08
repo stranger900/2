@@ -32,7 +32,7 @@ spec:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                - node3
+                - {{ .Values.nodeNumber }}
       containers:
       - image: {{ .Values.container.image }}
         name: {{ .Release.Name }}
