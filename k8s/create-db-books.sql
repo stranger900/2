@@ -1,3 +1,5 @@
+drop database if exists  books_shop;
+
 create database books_shop;
 
 use books_shop;
