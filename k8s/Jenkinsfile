@@ -10,11 +10,6 @@ pipeline{
 
     }    
     stages {
-//         stage('Git init'){
-//             steps{
-//                 git 'https://github.com/stranger900/2.git'
-//             }
-//         }
         stage('Get pods'){
             steps{
                 sh 'kubectl get nodes'
@@ -23,10 +18,9 @@ pipeline{
         stage('Helm install web-app'){
             steps{
                 sh """
-                helm install web-app  k8s/helm-chart/ 
+                helm install web-app  k8s/helm-chart/ --values k8s/helm-chart/values.yaml --namespace test --create-namespace --wait
                                
                 """    
-                // --values k8s/helm-chart/values.yaml --namespace test --create-namespace --wait
             }
         }
 //        stage("Create LoadBalancer"){
