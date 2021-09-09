@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+    environment{
+        KUBECONFIG="/opt/config"        
+        BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
+
+    }    
+    stages {
+        stage('Get pods'){
+            steps{
+                sh 'kubectl get nodes'
+            }
+        }          
+        stage('Helm install web-app'){
+            steps{
+                sh """
+                helm uninstall web-app  k8s/helm-chart/  --namespace test 
+                
+                """                
+            }
+        }        
+    }
+}
