@@ -4,3 +4,5 @@ container:
 replicaCount: 1
 
 nodeNumber: node3
+
+databaseName: books_shop
