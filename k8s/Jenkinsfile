@@ -16,14 +16,14 @@ pipeline{
                 sh 'kubectl get nodes'
             }
         }          
-//         stage('Helm install web-app'){
-//             steps{
-//                 sh """
-//                 helm install web-app  k8s/helm-chart/ --values k8s/helm-chart/values.yaml --namespace test --create-namespace --wait
+        stage('Helm install web-app'){
+            steps{
+                sh """
+                helm install web-app  k8s/helm-chart/ --values k8s/helm-chart/values.yaml --namespace test --create-namespace --wait
                 
-//                 """                
-//             }
-//         }
+                """                
+            }
+        }
 //        stage("Create LoadBalancer"){
 //            steps {
 //                script {
