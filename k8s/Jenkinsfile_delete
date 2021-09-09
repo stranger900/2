@@ -11,7 +11,7 @@ pipeline{
                 sh 'kubectl get nodes'
             }
         }          
-        stage('Helm install web-app'){
+        stage('Helm uninstall web-app'){
             steps{
                 sh """
                 helm uninstall web-app  k8s/helm-chart/  --namespace test 
