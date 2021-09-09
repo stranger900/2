@@ -30,11 +30,11 @@ spec:
                   key: ROOT_PASSWORD
             command: ["/bin/sh","-c"]
             args: ["mysqldump --host=${CONTAINER_NAME} -u root -p${MYSQL_ROOT_PASSWORD} books_shop > /var/lib/mysql/books_shop.sql"]
-            volumeMounts:
-            - name: {{ .Release.Name }}-persistent-storage
-              mountPath: /var/lib/mysql
-          volumes:
-          - name: {{ .Release.Name }}-persistent-storage
-            persistentVolumeClaim:
-              claimName: {{ .Release.Name }}-pv-claim
+#             volumeMounts:
+#             - name: {{ .Release.Name }}-persistent-storage
+#               mountPath: /var/lib/mysql
+#           volumes:
+#           - name: {{ .Release.Name }}-persistent-storage
+#             persistentVolumeClaim:
+#               claimName: {{ .Release.Name }}-pv-claim
           restartPolicy: OnFailure
