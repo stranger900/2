@@ -6,11 +6,11 @@ pipeline{
 
     }    
     stages {
-        stage('Git init'){
-            steps{
-                git 'https://github.com/stranger900/2.git'
-            }
-        }
+//         stage('Git init'){
+//             steps{
+//                 git 'https://github.com/stranger900/2.git'
+//             }
+//         }
         stage('Get pods'){
             steps{
                 sh 'kubectl get nodes'
