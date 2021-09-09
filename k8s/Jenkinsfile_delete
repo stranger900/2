@@ -1,5 +1,10 @@
 pipeline{
     agent any
+    
+    options {
+        buildDiscarder(logRotator(numToKeepStr: "5"))
+    }
+    
     environment{
         KUBECONFIG="/opt/config"        
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
