@@ -19,7 +19,7 @@ pipeline{
         stage('Helm uninstall web-app'){
             steps{
                 sh """
-                helm uninstall web-app  --namespace test 
+                helm uninstall web-app  --namespace ${BRANCH_NAME}
                 
                 """                
             }
