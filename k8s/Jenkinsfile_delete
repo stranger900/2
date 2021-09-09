@@ -27,7 +27,7 @@ pipeline{
         stage('Delete namespace'){
             steps{
                 sh """
-                kubectl delete  --namespace ${BRANCH_NAME}
+                kubectl delete  ns ${BRANCH_NAME}
                 
                 """                
             }
