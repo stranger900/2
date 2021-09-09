@@ -14,7 +14,7 @@ pipeline{
         stage('Helm uninstall web-app'){
             steps{
                 sh """
-                helm uninstall web-app  k8s/helm-chart/  --namespace test 
+                helm uninstall web-app  --namespace test 
                 
                 """                
             }
