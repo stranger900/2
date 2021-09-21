@@ -32,7 +32,7 @@ spec:
             args: ["mysqldump --host=${CONTAINER_NAME} -u root -p${MYSQL_ROOT_PASSWORD} books_shop > /opt/bs.sql"]
             volumeMounts:
             - name: {{ .Release.Name }}-persistent-storage
-              mountPath: {{ .Values.mountPath }}
+              mountPath: /opt/database/dump
           volumes:
           - name: {{ .Release.Name }}-persistent-storage
             persistentVolumeClaim:
