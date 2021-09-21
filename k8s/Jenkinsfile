@@ -18,7 +18,7 @@ pipeline{
         stage('Helm install web-app'){
             steps{
                 sh """
-                helm install web-app  k8s/helm-chart/ --values k8s/helm-chart/values.yaml --namespace ${BRANCH_NAME} --create-namespace --wait
+                helm install web-app  k8s/helm-chart/ --values k8s/helm-chart/values.yaml --namespace test --create-namespace --wait
                                
                 """    
             }
