@@ -31,7 +31,7 @@ spec:
         args: ["mysql --host=${CONTAINER_NAME} -u root -p${MYSQL_ROOT_PASSWORD} <  /opt/database/create/create-db-books.sql"]
         volumeMounts:
         - name: {{ .Release.Name }}-persistent-storage
-          mountPath: /var/lib/mysql
+          mountPath: {{ .Values.mountPath }}
       volumes:
       - name: {{ .Release.Name }}-persistent-storage
         persistentVolumeClaim:
