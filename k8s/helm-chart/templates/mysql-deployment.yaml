@@ -46,10 +46,10 @@ spec:
         ports:
         - containerPort: 3306
           name: {{ .Release.Name }}
-#         volumeMounts:
-#         - name: {{ .Release.Name }}-persistent-storage
-#           mountPath: /var/lib/mysql
-#       volumes:
-#       - name: {{ .Release.Name }}-persistent-storage
-#         persistentVolumeClaim:
-#           claimName: {{ .Release.Name }}-pv-claim
+        volumeMounts:
+        - name: {{ .Release.Name }}-persistent-storage
+          mountPath: {{ .Values.mountPath }}
+      volumes:
+      - name: {{ .Release.Name }}-persistent-storage
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-pv-claim
