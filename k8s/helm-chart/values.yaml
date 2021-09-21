@@ -6,3 +6,5 @@ replicaCount: 1
 nodeNumber: node3
 
 databaseName: books_shop
+
+mountPath: /opt/database/dump
