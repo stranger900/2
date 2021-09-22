@@ -11,7 +11,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/opt/database/dump"
+    path: "{{ .Values.mountPath }}"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
