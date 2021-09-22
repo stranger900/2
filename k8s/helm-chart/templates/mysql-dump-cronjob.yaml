@@ -29,7 +29,7 @@ spec:
                   name: {{ .Release.Name }}-secrets
                   key: ROOT_PASSWORD
             command: ["/bin/sh","-c"]
-            args: ["mysqldump --host=${CONTAINER_NAME} -u root -p${MYSQL_ROOT_PASSWORD} books_shop > /opt/database/dump/dump-bs-{{ .Values.envmap.BRANCH_NAME }}.sql"]
+            args: ["mysqldump --host=${CONTAINER_NAME} -u root -p${MYSQL_ROOT_PASSWORD} books_shop > /opt/database/dump/dump-{{ .Values.envmap.BRANCH_NAME }}-{{ .Values.databaseName }}-$(date +%Y-%m-%d-%H.%M.%S).sql"]
             volumeMounts:
             - name: {{ .Release.Name }}-persistent-storage
               mountPath: /opt/database/dump
