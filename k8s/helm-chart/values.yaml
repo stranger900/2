@@ -8,3 +8,6 @@ nodeNumber: node3
 databaseName: books_shop
 
 mountPath: /opt/database/dump
+
+envmap:  
+  BRANCH_NAME: BRANCH_NAME
